@@ -1,0 +1,28 @@
+.footer {
+    display: flex;
+    background-color: #6278F7;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+    padding: 50px;
+    background-image: url("../../../public/imagens/fundo.png");
+    background-size: cover;
+}
+
+.footer ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.footer ul li img{
+    width: 70%;
+}
+
+.footer .logo {
+    width: 12%;
+}
+
+.footer h6{
+    font-size: 12px;
+}
