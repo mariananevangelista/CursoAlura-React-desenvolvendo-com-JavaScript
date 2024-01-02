@@ -1,8 +1,8 @@
 import './Botão.css'
 
-const Botão = (props) => {
+const Botão = ({children}) => {
     return(
-        <button className="botao">{props.children}</button>
+        <button className="botao">{children}</button>
     )
 }
 

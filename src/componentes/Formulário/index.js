@@ -4,7 +4,7 @@ import ListaSuspensa from '../ListaSuspensa';
 import Botão from '../Botão';
 import React, { useState } from 'react';
 
-const Formulário = (props) => {
+const Formulário = ({cadastro, times}) => {
   //Os dados são passados para o elemento pai, e então passamos como prop para o componente
 
   //Eventos podem ser passados direto para o elemento, nesse caso precisamos ouvir o evento do formulário,
@@ -29,7 +29,7 @@ const Formulário = (props) => {
 
     <section className="formulario">
       <form onSubmit={(event) => {event.preventDefault()
-      props.cadastro({
+      cadastro({
         nome,
         cargo,
         imagem,
@@ -61,7 +61,7 @@ const Formulário = (props) => {
                         alteracao={(time) => setTime(time)}
                         obrigatório="true" 
                         label="Time" 
-                        items={props.times}/>
+                        items={times}/>
         <Botão>Criar Card</Botão>
       </form>
     </section>

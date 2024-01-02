@@ -3,59 +3,61 @@ import Formulário from './componentes/Formulário';
 import React, { useState } from 'react';
 import Time from './componentes/Time';
 import Rodapé from './componentes/Rodapé';
+import Titulo from './componentes/Titulo';
 
 
 
 function App() {
   const [colaboradores, setColaboradores] = useState([]) //colaboradores começa como um array vazio
 
-  const times = [
+  colaboradores.forEach((colaborador, index) => colaborador.id = index )
+
+  const [times, setTimes] = useState([
     {
       nome: 'Programação',
-      corPrimaria: '#57C278',
-      corSecundaria: '#D9F7E9'
+      cor: '#57C278',
     },
     {
       nome: 'Front-End',
-      corPrimaria: '#82CFFA',
-      corSecundaria: '#E8F8FF'
+      cor: '#82CFFA',
     },
     {
       nome: 'Data Science',
-      corPrimaria: '#A6D157',
-      corSecundaria: '#F0F8E2'
+      cor: '#A6D157',
     },
     {
       nome: 'Devops',
-      corPrimaria: '#E06B69',
-      corSecundaria: '#FDE7E8'
+      cor: '#E06B69',
     },
     {
       nome: 'UX e Design',
-      corPrimaria: '#DB6EBF',
-      corSecundaria: '#FAE9F5'
+      cor: '#DB6EBF',
     },
     {
       nome: 'Mobile',
-      corPrimaria: '#FFBA05',
-      corSecundaria: '#FFF5D9'
+      cor: '#FFBA05',
     },
     {
       nome: 'Inovação e Gestão',
-      corPrimaria: '#FF8A29',
-      corSecundaria: '#FFEEDF'
+      cor: '#FF8A29',
     }
-  ]
+  ])
 
   return (
     <div className="App">
       <Banner />
       <Formulário times={times} cadastro={(colaborador)=> setColaboradores([...colaboradores, colaborador])}/>
-      {times.map((time)=>  <Time key={time.nome} 
-                                nome={time.nome} 
-                                corPrimaria={time.corPrimaria} 
-                                corSecundaria={time.corSecundaria} 
-                                colaboradores = {colaboradores.filter((colaborador) => colaborador.time === time.nome)} />)}
+      {colaboradores.length > 0 && <section className='container'>
+                                      <Titulo />
+                                      {times.map((time)=>  <Time key={time.nome} 
+                                                                 time= {time}
+                                                                 deletar = {(id) => setColaboradores(colaboradores.filter((colaborador) => colaborador.id !== id))}
+                                                                 colaboradores = {colaboradores.filter((colaborador) => colaborador.time === time.nome)}
+                                                                 mudarCor = {(cor, nome) => setTimes(times.map((time) => {time.cor = (time.nome === nome) ? cor : time.cor
+                                                                 return time} ))}
+                                                                />)}
+                                    </section>}
+      
       <Rodapé />
     </div>
   );

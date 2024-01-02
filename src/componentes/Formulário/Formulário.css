@@ -4,6 +4,11 @@
     margin: 80px 0;
 }
 
+.formulario form h2 {
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
 .formulario form{
     max-width: 80%;
     background-color: #F2F2F2;
