@@ -1,10 +1,10 @@
 import './Formulário.css'
-import CampoTexto from '../CampoTexto';
+import Campo from '../Campo';
 import ListaSuspensa from '../ListaSuspensa';
 import Botão from '../Botão';
 import React, { useState } from 'react';
 
-const Formulário = ({cadastro, times}) => {
+const Formulário = ({cadastro, times, cadastroTime}) => {
   //Os dados são passados para o elemento pai, e então passamos como prop para o componente
 
   //Eventos podem ser passados direto para o elemento, nesse caso precisamos ouvir o evento do formulário,
@@ -18,6 +18,9 @@ const Formulário = ({cadastro, times}) => {
   const [cargo, setCargo] = useState('')
   const [imagem, setImagem] = useState('')
   const [time, setTime] = useState('')
+
+  const [nomeTime, setNomeTime] = useState('')
+  const [corTime, setCorTime] = useState('')
 
   //Para que o valor da variável seja alterado conforme o valor do input, usamos useState para renderizar essas alterações, a função alteração
   //vai receber o valor do input como parâmetro no elemento por onChange, e pegamos esse valor e passamos para a função setName, que irá atualizar
@@ -40,19 +43,19 @@ const Formulário = ({cadastro, times}) => {
       setImagem('')
       setTime('')}}>
         <h2>Preencha os dados para criar o card do colaborador.</h2>
-        <CampoTexto valor={nome}
+        <Campo valor={nome}
                     alteracao={(nome) => setNome(nome)}
                     obrigatório="true" 
                     label="Nome" 
                     placeholder="Digite seu nome" />
 
-        <CampoTexto valor={cargo}
+        <Campo valor={cargo}
                     alteracao={(cargo) => setCargo(cargo)} 
                     obrigatório="true" 
                     label="Cargo" 
                     placeholder="Digite seu cargo" />
 
-        <CampoTexto valor={imagem}
+        <Campo valor={imagem}
                     alteracao={(imagem) => setImagem(imagem)} 
                     label="Imagem" 
                     placeholder="Informe o endereço da imagem"/>
@@ -63,6 +66,30 @@ const Formulário = ({cadastro, times}) => {
                         label="Time" 
                         items={times}/>
         <Botão>Criar Card</Botão>
+      </form>
+
+      <form onSubmit={(event) => {event.preventDefault()
+      cadastroTime({
+        nome: nomeTime,
+        cor: corTime,
+      })
+      setNomeTime('')
+      setCorTime('')}}>
+        <h2>Preencha os dados para criar um novo time.</h2>
+        <Campo valor={nomeTime}
+                    alteracao={(nome) => setNomeTime(nome)}
+                    obrigatório 
+                    label="Nome" 
+                    placeholder="Digite o nome do time" />
+
+        <Campo valor={corTime}
+                    alteracao={(cor) => setCorTime(cor)} 
+                    obrigatório 
+                    label="Cor" 
+                    placeholder="Escolha a cor do time"
+                    tipo='color' />
+
+        <Botão>Criar Time</Botão>
       </form>
     </section>
   );

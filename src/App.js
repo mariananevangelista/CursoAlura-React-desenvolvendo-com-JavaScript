@@ -40,13 +40,15 @@ function App() {
     {
       nome: 'Inovação e Gestão',
       cor: '#FF8A29',
-    }
+    },
   ])
 
   return (
     <div className="App">
       <Banner />
-      <Formulário times={times} cadastro={(colaborador)=> setColaboradores([...colaboradores, colaborador])}/>
+      <Formulário cadastroTime={(time) => setTimes([...times, time])} 
+                  times={times} 
+                  cadastro={(colaborador)=> setColaboradores([...colaboradores, colaborador])}/>
       {colaboradores.length > 0 && <section className='container'>
                                       <Titulo />
                                       {times.map((time)=>  <Time key={time.nome} 
