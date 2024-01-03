@@ -23,3 +23,9 @@
 .campo input:focus {
     outline-color: #6278F7;
 }
+
+.campo-color input {
+    height: 50px;
+    width: 20%;
+    padding: 5px;
+}

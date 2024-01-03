@@ -20,7 +20,7 @@ const Formulário = ({cadastro, times, cadastroTime}) => {
   const [time, setTime] = useState('')
 
   const [nomeTime, setNomeTime] = useState('')
-  const [corTime, setCorTime] = useState('')
+  const [corTime, setCorTime] = useState('#FFF000')
 
   //Para que o valor da variável seja alterado conforme o valor do input, usamos useState para renderizar essas alterações, a função alteração
   //vai receber o valor do input como parâmetro no elemento por onChange, e pegamos esse valor e passamos para a função setName, que irá atualizar

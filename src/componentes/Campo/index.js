@@ -1,6 +1,6 @@
 import './Campo.css'
 
-const CampoTexto = ({label, valor, alteracao, obrigatório, placeholder, tipo}) => {
+const Campo = ({label, valor, alteracao, obrigatório, placeholder, tipo='text'}) => {
 
     return(
         <div className={`campo campo-${tipo}`}>
@@ -22,4 +22,4 @@ const CampoTexto = ({label, valor, alteracao, obrigatório, placeholder, tipo}) 
 //quando temos um valor pré-definido modificações não são renderizadas na tela, isso porque precisamos alterar o estado
 //do componente e renderizar novamente
 
-export default CampoTexto;
+export default Campo;

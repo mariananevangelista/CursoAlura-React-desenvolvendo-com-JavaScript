@@ -2,7 +2,7 @@ import Card from '../Card';
 import hexToRgba from 'hex-to-rgba';
 import './Time.css'
 
-const Time = ({colaboradores, time, deletar, mudarCor}) => {
+const Time = ({colaboradores, time, deletar, mudarCor, favoritar}) => {
     return(
         colaboradores.length > 0 && <section className="time" style={{backgroundColor: hexToRgba(time.cor, '0.2')}}>
             <input value={time.cor} type='color' className='input-cor' onChange={(evento) => mudarCor(evento.target.value, time.nome)}/>
@@ -12,6 +12,7 @@ const Time = ({colaboradores, time, deletar, mudarCor}) => {
                 {colaboradores.map((colaborador) => <Card key={colaborador.nome} colaborador = {colaborador} 
                                                     cor = {time.cor}
                                                     deletar = {deletar}
+                                                    favoritar = {favoritar}
                                                     />)}
             </div>
         </section>

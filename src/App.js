@@ -7,10 +7,11 @@ import Titulo from './componentes/Titulo';
 
 
 
+
 function App() {
   const [colaboradores, setColaboradores] = useState([]) //colaboradores começa como um array vazio
 
-  colaboradores.forEach((colaborador, index) => colaborador.id = index )
+  colaboradores.forEach((colaborador, index) => colaborador.id = index)
 
   const [times, setTimes] = useState([
     {
@@ -57,6 +58,9 @@ function App() {
                                                                  colaboradores = {colaboradores.filter((colaborador) => colaborador.time === time.nome)}
                                                                  mudarCor = {(cor, nome) => setTimes(times.map((time) => {time.cor = (time.nome === nome) ? cor : time.cor
                                                                  return time} ))}
+                                                                 favoritar = {(id) => setColaboradores(colaboradores.map((colaborador) => {
+                                                                  colaborador.favorito = (colaborador.id === id) ? (!colaborador.favorito) : colaborador.favorito
+                                                                  return colaborador}))}
                                                                 />)}
                                     </section>}
       
