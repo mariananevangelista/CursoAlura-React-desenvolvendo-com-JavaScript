@@ -9,7 +9,7 @@ const Card = ({colaborador, cor, deletar, favoritar}) => {
                 <AiFillCloseCircle />
             </div>
             <div className='cabecalho' style={{backgroundColor: cor}}>
-                <img src={colaborador.imagem} alt={colaborador.nome}/>
+                <div className='img' style={{backgroundImage: `url(${colaborador.imagem})`}}></div>
             </div>
             
             <div className='rodape' onClick={() => favoritar(colaborador.id)}>

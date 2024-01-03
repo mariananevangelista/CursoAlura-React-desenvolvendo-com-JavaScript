@@ -32,13 +32,13 @@ const Formulário = ({cadastro, times, cadastroTime}) => {
 
     <section className="formulario">
       <form onSubmit={(event) => {event.preventDefault()
-      cadastro({
+      cadastro({ //função passada por props que recebe como parâmetro o objeto colaborador com suas propriedades
         nome,
         cargo,
         imagem,
         time
       })
-      setNome('')
+      setNome('') //limpar input
       setCargo('')
       setImagem('')
       setTime('')}}>
