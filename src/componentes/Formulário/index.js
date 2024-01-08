@@ -27,70 +27,108 @@ const Formulário = ({cadastro, times, cadastroTime}) => {
   //a variável e renderizar novamente o valor na tela
 
   //vamos tratar o fomulário como um objeto, cada campo é uma propriedade, e ao realizar o cadastro de um colaborador retornamos um objeto
+  const [formColaborador, setFormColaborador] = useState(true)
+  const [formTime, setFormTime] = useState(false)
+
 
   return (
-
     <section className="formulario">
-      <form onSubmit={(event) => {event.preventDefault()
-      cadastro({ //função passada por props que recebe como parâmetro o objeto colaborador com suas propriedades
-        nome,
-        cargo,
-        imagem,
-        time
-      })
-      setNome('') //limpar input
-      setCargo('')
-      setImagem('')
-      setTime('')}}>
-        <h2>Preencha os dados para criar o card do colaborador.</h2>
-        <Campo valor={nome}
-                    alteracao={(nome) => setNome(nome)}
-                    obrigatório="true" 
-                    label="Nome" 
-                    placeholder="Digite seu nome" />
+      <div className='buttons'>
+        <button onClick={() => {setFormColaborador(true)
+          setFormTime(false)}} style={formColaborador === true ? {color: '#6278f7', borderBottom: '3px solid', fontWeight: 'bold'} : {color: 'gray'}}>Novo Colaborador</button>
 
-        <Campo valor={cargo}
-                    alteracao={(cargo) => setCargo(cargo)} 
-                    obrigatório="true" 
-                    label="Cargo" 
-                    placeholder="Digite seu cargo" />
+        <button onClick={() => {setFormColaborador(false)
+          setFormTime(true)}} style={formTime === true ? {color: '#6278f7', borderBottom: '3px solid', fontWeight: 'bold'} : {color: 'gray'}}>Novo Time</button>
+      </div>
 
-        <Campo valor={imagem}
-                    alteracao={(imagem) => setImagem(imagem)} 
-                    label="Imagem" 
-                    placeholder="Informe o endereço da imagem"/>
+      <div>
+        {formColaborador && (
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              cadastro({
+                //função passada por props que recebe como parâmetro o objeto colaborador com suas propriedades
+                nome,
+                cargo,
+                imagem,
+                time,
+              });
+              setNome(""); //limpar input
+              setCargo("");
+              setImagem("");
+              setTime("");
+            }}
+          >
+            <h2>Preencha os dados para criar o card do colaborador.</h2>
+            <Campo
+              valor={nome}
+              alteracao={(nome) => setNome(nome)}
+              obrigatório="true"
+              label="Nome"
+              placeholder="Digite seu nome"
+            />
 
-        <ListaSuspensa  valor={time}
-                        alteracao={(time) => setTime(time)}
-                        obrigatório="true" 
-                        label="Time" 
-                        items={times}/>
-        <Botão>Criar Card</Botão>
-      </form>
+            <Campo
+              valor={cargo}
+              alteracao={(cargo) => setCargo(cargo)}
+              obrigatório="true"
+              label="Cargo"
+              placeholder="Digite seu cargo"
+            />
 
-      <form onSubmit={(event) => {event.preventDefault()
-      cadastroTime({
-        nome: nomeTime,
-        cor: corTime,
-      })
-      setNomeTime('')
-      setCorTime('')}}>
-        <h2>Preencha os dados para criar um novo time.</h2>
-        <Campo valor={nomeTime}
-                    alteracao={(nome) => setNomeTime(nome)}
-                    obrigatório 
-                    label="Nome" 
-                    placeholder="Digite o nome do time" />
+            <Campo
+              valor={imagem}
+              alteracao={(imagem) => setImagem(imagem)}
+              label="Imagem"
+              placeholder="Informe o endereço da imagem"
+            />
 
-        <Campo valor={corTime}
-                    alteracao={(cor) => setCorTime(cor)} 
-                    obrigatório 
-                    label="Cor" 
-                    placeholder="Escolha a cor do time"
-                    tipo='color' />
+            <ListaSuspensa
+              valor={time}
+              alteracao={(time) => setTime(time)}
+              obrigatório="true"
+              label="Time"
+              items={times}
+            />
+            <Botão>Criar Card</Botão>
+          </form>
+        )}
 
-        <Botão>Criar Time</Botão>
-      </form>
+        {formTime && (
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              cadastroTime({
+                nome: nomeTime,
+                cor: corTime,
+              });
+              setNomeTime("");
+              setCorTime("");
+            }}
+          >
+            <h2>Preencha os dados para criar um novo time.</h2>
+            <Campo
+              valor={nomeTime}
+              alteracao={(nome) => setNomeTime(nome)}
+              obrigatório
+              label="Nome"
+              placeholder="Digite o nome do time"
+            />
+
+            <Campo
+              valor={corTime}
+              alteracao={(cor) => setCorTime(cor)}
+              obrigatório
+              label="Cor"
+              placeholder="Escolha a cor do time"
+              tipo="color"
+            />
+
+            <Botão>Criar Time</Botão>
+          </form>
+        )}
+      </div>
+      
     </section>
   );
 };

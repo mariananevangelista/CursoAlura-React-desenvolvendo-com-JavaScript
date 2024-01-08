@@ -1,9 +1,8 @@
 .formulario {
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
-    margin: 80px 20px;
+    margin: 80px 150px;
 }
 
 .formulario form h2 {
@@ -12,9 +11,22 @@
 }
 
 .formulario form{
-    flex: 1;
     background-color: #F2F2F2;
     border-radius: 20px;
     padding: 36px 64px;
-    box-shadow: 7px 7px 15px 0px rgba(0, 0, 0, 0.08);
+    box-shadow: 7px 7px 9px 0px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+    display: flex;
+    justify-content:center;
+    gap: 30px;
+}
+
+.buttons button {
+    border: none;
+    background-color: transparent;
+    font-size: 23px;
+    margin-bottom: 10px;
+    cursor: pointer;
 }

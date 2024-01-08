@@ -12,10 +12,10 @@ const Card = ({colaborador, cor, deletar, favoritar}) => {
                 <div className='img' style={{backgroundImage: `url(${colaborador.imagem})`}}></div>
             </div>
             
-            <div className='rodape' onClick={() => favoritar(colaborador.id)}>
+            <div className='rodape' >
                 <h4>{colaborador.nome}</h4>
                 <h5>{colaborador.cargo}</h5>
-                <div className='favoritar' >
+                <div className='favoritar' onClick={() => favoritar(colaborador.id)}>
                     {colaborador.favorito ? <IoMdStar /> : <IoMdStarOutline  />}
                 </div>
             </div>

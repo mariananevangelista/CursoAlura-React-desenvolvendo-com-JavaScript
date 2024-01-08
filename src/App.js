@@ -44,26 +44,40 @@ function App() {
     },
   ])
 
+  const [formVisibility, setFormVisibility] = useState(false)
+
   return (
     <div className="App">
       <Banner />
-      <Formulário cadastroTime={(time) => setTimes([...times, time])} 
-                  times={times} 
-                  cadastro={(colaborador)=> setColaboradores([...colaboradores, colaborador])}/>
-      {colaboradores.length > 0 && <section className='container'>
-                                      <Titulo />
-                                      {times.map((time)=>  <Time key={time.nome} 
-                                                                 time= {time}
-                                                                 deletar = {(id) => setColaboradores(colaboradores.filter((colaborador) => colaborador.id !== id))}
-                                                                 colaboradores = {colaboradores.filter((colaborador) => colaborador.time === time.nome)}
-                                                                 mudarCor = {(cor, nome) => setTimes(times.map((time) => {time.cor = (time.nome === nome) ? cor : time.cor
-                                                                 return time} ))}
-                                                                 favoritar = {(id) => setColaboradores(colaboradores.map((colaborador) => {
-                                                                  colaborador.favorito = (colaborador.id === id) ? (!colaborador.favorito) : colaborador.favorito
-                                                                  return colaborador}))}
-                                                                />)}
-                                    </section>}
+
+      {formVisibility && <Formulário
+        cadastroTime={(time) => setTimes([...times, time])}
+        times={times}
+        cadastro={(colaborador) =>
+          setColaboradores([...colaboradores, colaborador])
+        }
+      /> }
+
+      <Titulo showForm={() => setFormVisibility(!formVisibility)}/>
+
+      {times.map((time) => (
+          <Time
+            key={time.nome}
+            time={time}
+            deletar={(id) => setColaboradores(colaboradores.filter((colaborador) => colaborador.id !== id))}
+            colaboradores={colaboradores.filter((colaborador) => colaborador.time === time.nome)}
+            mudarCor={(cor, nome) => setTimes(times.map((time) => {
+              time.cor = time.nome === nome ? cor : time.cor;
+              return time;
+            }))}
+            favoritar={(id) => setColaboradores(colaboradores.map((colaborador) => {
+              colaborador.favorito = colaborador.id === id? !colaborador.favorito : colaborador.favorito;
+              return colaborador;
+            }))}
+          />
+      ))}
       
+
       <Rodapé />
     </div>
   );
